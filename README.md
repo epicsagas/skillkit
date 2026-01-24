@@ -231,7 +231,7 @@ skillkit cicd pre-commit
 | OpenCode | SKILL.md | `.opencode/skills/` |
 | Antigravity | SKILL.md | `.antigravity/skills/` |
 | Amp | SKILL.md | `.amp/skills/` |
-| Clawdbot | SKILL.md | `skills/` |
+| Clawdbot | SKILL.md | `skills/` or `~/.clawdbot/skills/` |
 | Droid (Factory) | SKILL.md | `.factory/skills/` |
 | GitHub Copilot | Markdown | `.github/skills/` |
 | Goose | SKILL.md | `.goose/skills/` |

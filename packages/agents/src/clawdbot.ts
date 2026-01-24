@@ -68,7 +68,8 @@ ${skillsXml}
   async isDetected(): Promise<boolean> {
     const projectSkills = join(process.cwd(), 'skills');
     const globalClawdbot = join(homedir(), '.clawdbot');
+    const clawdbotConfig = join(process.cwd(), 'clawdbot.json');
 
-    return existsSync(globalClawdbot) || (existsSync(projectSkills) && existsSync(join(process.cwd(), '.clawdbot')));
+    return existsSync(projectSkills) || existsSync(globalClawdbot) || existsSync(clawdbotConfig);
   }
 }

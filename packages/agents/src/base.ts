@@ -20,7 +20,8 @@ export function createSkillXml(skill: Skill): string {
 </skill>`;
 }
 
-export function escapeXml(text: string): string {
+export function escapeXml(text: string | undefined): string {
+  if (!text) return '';
   return text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

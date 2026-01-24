@@ -60,3 +60,7 @@ skillkit.yaml
 
 # Turbo cache
 .turbo/
+
+# Project documentation (not for version control)
+CLAUDE.md
+prd.md

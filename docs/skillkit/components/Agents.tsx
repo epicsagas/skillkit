@@ -201,13 +201,13 @@ export function Agents(): React.ReactElement {
               href={agent.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 group opacity-70 hover:opacity-100 transition-all duration-300 px-8 flex-shrink-0"
+              className="flex flex-col items-center gap-2 sm:gap-3 group opacity-70 hover:opacity-100 transition-all duration-300 px-4 sm:px-8 flex-shrink-0"
               title={agent.name}
             >
-              <div className="text-zinc-200 group-hover:text-white transition-colors [&_svg]:w-14 [&_svg]:h-14">
+              <div className="text-zinc-200 group-hover:text-white transition-colors [&_svg]:w-10 [&_svg]:h-10 sm:[&_svg]:w-14 sm:[&_svg]:h-14">
                 {agent.icon}
               </div>
-              <span className="text-zinc-500 font-mono text-xs group-hover:text-zinc-300 transition-colors whitespace-nowrap">
+              <span className="text-zinc-500 font-mono text-[10px] sm:text-xs group-hover:text-zinc-300 transition-colors whitespace-nowrap">
                 {agent.name}
               </span>
             </a>

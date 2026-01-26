@@ -80,18 +80,18 @@ export function Features(): React.ReactElement {
             <p className="text-zinc-500 font-mono text-sm mb-6">
               Universal bridge for AI coding agents.
             </p>
-            <div className="flex gap-8">
+            <div className="flex gap-6 sm:gap-8">
               <div>
-                <div className="text-3xl font-bold text-white font-mono">17+</div>
-                <div className="text-zinc-600 text-xs font-mono">Agents</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white font-mono">17+</div>
+                <div className="text-zinc-600 text-[10px] sm:text-xs font-mono">Agents</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-white font-mono">1</div>
-                <div className="text-zinc-600 text-xs font-mono">Command</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white font-mono">1</div>
+                <div className="text-zinc-600 text-[10px] sm:text-xs font-mono">Command</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-white font-mono">∞</div>
-                <div className="text-zinc-600 text-xs font-mono">Skills</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white font-mono">∞</div>
+                <div className="text-zinc-600 text-[10px] sm:text-xs font-mono">Skills</div>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ export function Features(): React.ReactElement {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {FEATURES.map((feature, index) => (
             <div
               key={feature.title}

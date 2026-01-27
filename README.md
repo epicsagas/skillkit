@@ -48,6 +48,25 @@ skillkit recommend
 
 ![SkillKit Demo](https://raw.githubusercontent.com/rohitg00/skillkit/main/skillkit.gif)
 
+## Beautiful CLI Experience
+
+SkillKit features a polished, interactive CLI with visual feedback:
+
+```
+    ███████╗██╗  ██╗██╗██╗     ██╗     ██╗  ██╗██╗████████╗
+    ██╔════╝██║ ██╔╝██║██║     ██║     ██║ ██╔╝██║╚══██╔══╝
+    ███████╗█████╔╝ ██║██║     ██║     █████╔╝ ██║   ██║
+    ╚════██║██╔═██╗ ██║██║     ██║     ██╔═██╗ ██║   ██║
+    ███████║██║  ██╗██║███████╗███████╗██║  ██╗██║   ██║
+    ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝
+```
+
+- **Adaptive Logo** - Full ASCII art on wide terminals, compact on narrow
+- **Agent Icons** - Visual indicators: ⟁ Claude · ◫ Cursor · ◎ Codex · ✦ Gemini · ⬡ OpenCode
+- **Interactive Selection** - Multi-select skills and agents with visual feedback
+- **Progress Indicators** - Step trails, spinners, and progress bars
+- **Smart Defaults** - Remembers your last selected agents
+
 ## What Makes SkillKit Different
 
 | Feature | Without SkillKit | With SkillKit |

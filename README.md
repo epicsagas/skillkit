@@ -3,6 +3,7 @@
 ```
 ██ SKILLKIT
 ```
+</div>
 
 **Universal Skills for AI Coding Agents**
 

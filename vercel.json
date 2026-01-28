@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "cd docs/fumadocs && npm install",
-  "buildCommand": "cd docs/fumadocs && npm run build",
-  "outputDirectory": "docs/fumadocs/.next",
-  "framework": "nextjs"
+  "installCommand": "cd docs/skillkit && npm install",
+  "buildCommand": "cd docs/skillkit && npm run build",
+  "outputDirectory": "docs/skillkit/dist",
+  "framework": "vite"
 }

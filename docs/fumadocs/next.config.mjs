@@ -7,6 +7,7 @@ const config = {
   reactStrictMode: true,
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
+  assetPrefix: 'https://skillkit-docs.vercel.app',
 };
 
 export default withMDX(config);

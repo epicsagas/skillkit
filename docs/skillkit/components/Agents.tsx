@@ -167,6 +167,132 @@ const AGENTS: Agent[] = [
       </svg>
     )
   },
+  {
+    name: "CodeBuddy",
+    url: "https://codebuddy.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 33c-9.389 0-17 7.611-17 17s7.611 17 17 17 17-7.611 17-17-7.611-17-17-17zm0 28c-6.075 0-11-4.925-11-11s4.925-11 11-11 11 4.925 11 11-4.925 11-11 11zm-4-13a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Continue",
+    url: "https://continue.dev",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M35 33v34l30-17-30-17zm6 10.39L55.28 50 41 56.61V43.39z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Crush",
+    url: "https://crush.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 35c-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15 8.284 0 15-6.716 15-15 0-8.284-6.716-15-15-15zm-5 20l3-8 4 5 5-10 3 13H45z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Factory",
+    url: "https://factory.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M33 40v27h34V40l-11 8V40l-11 8V40L33 48zm6 12h6v9h-6v-9zm10 0h6v9h-6v-9zm10 0h6v9h-6v-9z"/>
+      </svg>
+    )
+  },
+  {
+    name: "MCPJam",
+    url: "https://mcpjam.com",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M40 35v30h6V47l4 10h4l4-10v18h6V35h-7l-5 14-5-14h-7z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Mux",
+    url: "https://mux.com",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M35 40l7.5 10L35 60h8l4-5.5 4 5.5h8l-7.5-10L59 40h-8l-4 5.5L43 40h-8zm22 0v20h6V40h-6z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Neovate",
+    url: "https://neovate.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M35 35v30h6V47l14 18h6V35h-6v18L41 35h-6z"/>
+      </svg>
+    )
+  },
+  {
+    name: "OpenHands",
+    url: "https://openhands.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 33c-9.389 0-17 7.611-17 17s7.611 17 17 17 17-7.611 17-17-7.611-17-17-17zm0 6c6.075 0 11 4.925 11 11h-22c0-6.075 4.925-11 11-11zm-8 15h16v3c0 4.418-3.582 8-8 8s-8-3.582-8-8v-3z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Pi",
+    url: "https://pi.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M38 35v6h9v24h6V41h9v-6H38z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Qoder",
+    url: "https://qoder.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 33c-9.389 0-17 7.611-17 17s7.611 17 17 17c3.144 0 6.09-.855 8.618-2.343l4.725 4.725 4.243-4.243-4.725-4.725A16.928 16.928 0 0 0 67 50c0-9.389-7.611-17-17-17zm0 6c6.075 0 11 4.925 11 11s-4.925 11-11 11-11-4.925-11-11 4.925-11 11-11z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Qwen",
+    url: "https://qwen.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 33c-9.389 0-17 7.611-17 17s7.611 17 17 17c3.144 0 6.09-.855 8.618-2.343l4.725 4.725 4.243-4.243-4.725-4.725A16.928 16.928 0 0 0 67 50c0-9.389-7.611-17-17-17zm0 6c6.075 0 11 4.925 11 11s-4.925 11-11 11-11-4.925-11-11 4.925-11 11-11zm-3 6v4h-4v4h4v-4h4v-4h-4z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Vercel",
+    url: "https://vercel.com",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M50 33L33 67h34L50 33z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Zencoder",
+    url: "https://zencoder.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M35 35v6h18.17L35 59v6h30v-6H46.83L65 41v-6H35z"/>
+      </svg>
+    )
+  },
+  {
+    name: "CommandCode",
+    url: "https://commandcode.ai",
+    icon: (
+      <svg viewBox="0 0 100 100" className="w-8 h-8" fill="currentColor">
+        <path d="M33 40v20h8v-6h4c5.523 0 10-4.477 10-10s-4.477-10-10-10h-12v6zm8 0h4c2.209 0 4 1.791 4 4s-1.791 4-4 4h-4v-8zm14 0l7 10-7 10h7l7-10-7-10h-7z"/>
+      </svg>
+    )
+  },
 ];
 
 const SCROLL_ANIMATION_STYLES = `
@@ -186,7 +312,7 @@ export function Agents(): React.ReactElement {
     <section className="py-6 border-b border-zinc-800 overflow-hidden">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <p className="text-zinc-500 font-mono text-[11px] uppercase tracking-widest mb-6 text-center">
-          Works with 17+ AI Agents
+          Works with 32 AI Agents
         </p>
       </div>
 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 
-const ASCII_LOGO = `███████╗██╗  ██╗██╗██╗     ██╗     ██╗  ██╗██╗████████╗
-██╔════╝██║ ██╔╝██║██║     ██║     ██║ ██╔╝██║╚══██╔══╝
-███████╗█████╔╝ ██║██║     ██║     █████╔╝ ██║   ██║
-╚════██║██╔═██╗ ██║██║     ██║     ██╔═██╗ ██║   ██║
-███████║██║  ██╗██║███████╗███████╗██║  ██╗██║   ██║
-╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝`;
+const ASCII_LOGO = `
+ ███████ ██   ██ ██ ██      ██      ██   ██ ██ ████████
+ ██      ██  ██  ██ ██      ██      ██  ██  ██    ██
+ ███████ █████   ██ ██      ██      █████   ██    ██
+      ██ ██  ██  ██ ██      ██      ██  ██  ██    ██
+ ███████ ██   ██ ██ ███████ ███████ ██   ██ ██    ██
+`.trim();
 
 interface TerminalLine {
   type: 'cmd' | 'out';
@@ -134,7 +135,7 @@ export function Hero(): React.ReactElement {
 
             <p className="text-sm text-zinc-400 mb-5 max-w-lg font-mono leading-relaxed">
               One CLI to install, sync, and manage skills across Claude Code, Cursor,
-              Windsurf, Copilot, and 13 more agents. 15,000+ skills ready to use.
+              Windsurf, Copilot, and 28 more agents. 15,000+ skills ready to use.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-4">

@@ -313,6 +313,23 @@ skillkit context init         # Initialize project context
 skillkit context sync         # Sync context to agents
 ```
 
+### AI Instruction Generation (Primer)
+
+Generate AI instruction files for all 32 supported agents based on your codebase analysis:
+
+```bash
+skillkit primer               # Analyze codebase, generate for detected agents
+skillkit primer --all-agents  # Generate for all 32 agents
+skillkit primer --agent claude-code,cursor  # Specific agents only
+skillkit primer --dry-run     # Preview without writing files
+skillkit primer --analyze-only  # Only show codebase analysis
+skillkit primer --output ./instructions  # Write to custom directory
+skillkit primer --json        # Output analysis as JSON (for scripting)
+skillkit primer --json --analyze-only  # Machine-readable analysis
+```
+
+Inspired by [primer](https://github.com/pierceboggan/primer) but extended for all SkillKit agents.
+
 ### Custom AI Sub-Agents
 
 ```bash

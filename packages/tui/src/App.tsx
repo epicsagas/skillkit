@@ -1,9 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
-import { useKeyboard } from '@opentui/react';
-import { exec } from 'node:child_process';
+import { createSignal, createEffect, onCleanup, Show, Switch, Match } from 'solid-js';
+import { useKeyboard } from '@opentui/solid';
+import { execFile } from 'node:child_process';
 import { type Screen, NAV_KEYS } from './state/types.js';
-import { Sidebar } from './components/Sidebar.js';
 import { Splash } from './components/Splash.js';
+import { Sidebar } from './components/Sidebar.js';
+import { StatusBar } from './components/StatusBar.js';
 import {
   Home, Browse, Installed, Marketplace, Settings, Recommend,
   Translate, Context, Memory, Team, Plugins, Methodology,
@@ -13,23 +14,28 @@ import {
 const DOCS_URL = 'https://agenstskills.com/docs';
 
 function openUrl(url: string): void {
-  const cmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
-  exec(`${cmd} ${url}`);
+  if (process.platform === 'win32') {
+    execFile('cmd', ['/c', 'start', '', url]);
+  } else {
+    const cmd = process.platform === 'darwin' ? 'open' : 'xdg-open';
+    execFile(cmd, [url]);
+  }
 }
 
 interface AppProps {
   onExit?: (code?: number) => void;
 }
 
-export function App({ onExit }: AppProps = {}) {
-  const [showSplash, setShowSplash] = useState(true);
-  const [screen, setScreen] = useState<Screen>('home');
-  const [dimensions, setDimensions] = useState({
+export function App(props: AppProps) {
+  const [showSplash, setShowSplash] = createSignal(true);
+  const [currentScreen, setCurrentScreen] = createSignal<Screen>('home');
+  const [showSidebar, setShowSidebar] = createSignal(true);
+  const [dimensions, setDimensions] = createSignal({
     cols: process.stdout.columns || 80,
     rows: process.stdout.rows || 24,
   });
 
-  useEffect(() => {
+  createEffect(() => {
     const handleResize = () => {
       setDimensions({
         cols: process.stdout.columns || 80,
@@ -37,28 +43,38 @@ export function App({ onExit }: AppProps = {}) {
       });
     };
     process.stdout.on('resize', handleResize);
-    return () => { process.stdout.off('resize', handleResize); };
-  }, []);
+    onCleanup(() => {
+      process.stdout.off('resize', handleResize);
+    });
+  });
 
-  const { cols, rows } = dimensions;
-  const showSidebar = cols >= 60;
+  const cols = () => dimensions().cols;
+  const rows = () => dimensions().rows;
+  const sidebarVisible = () => showSidebar() && cols() >= 80;
+  const sidebarWidth = () => {
+    if (!sidebarVisible()) return 0;
+    if (cols() >= 100) return 24;
+    return 18;
+  };
+  const statusBarHeight = 2;
+  const contentHeight = () => rows() - statusBarHeight;
 
-  const handleNavigate = useCallback((newScreen: Screen) => {
-    setScreen(newScreen);
-  }, []);
+  const handleNavigate = (newScreen: Screen) => {
+    setCurrentScreen(newScreen);
+  };
 
-  const handleSplashComplete = useCallback(() => {
+  const handleSplashComplete = () => {
     setShowSplash(false);
-  }, []);
+  };
 
-  useKeyboard((key: { name?: string; ctrl?: boolean }) => {
-    if (showSplash) {
+  useKeyboard((key: { name?: string; ctrl?: boolean; sequence?: string }) => {
+    if (showSplash()) {
       setShowSplash(false);
       return;
     }
 
     if (key.name === 'q' || (key.ctrl && key.name === 'c')) {
-      onExit ? onExit(0) : process.exit(0);
+      props.onExit ? props.onExit(0) : process.exit(0);
       return;
     }
 
@@ -67,59 +83,67 @@ export function App({ onExit }: AppProps = {}) {
       return;
     }
 
-    const targetScreen = NAV_KEYS[key.name || ''];
-    if (targetScreen) {
-      setScreen(targetScreen);
+    if (key.sequence === '\\') {
+      setShowSidebar((v) => !v);
+      return;
     }
 
-    if (key.name === 'escape' && screen !== 'home') {
-      setScreen('home');
+    const targetScreen = NAV_KEYS[key.name || ''];
+    if (targetScreen) {
+      setCurrentScreen(targetScreen);
+    }
+
+    if (key.name === 'escape' && currentScreen() !== 'home') {
+      setCurrentScreen('home');
     }
   });
 
-  if (showSplash) {
-    return <Splash onComplete={handleSplashComplete} duration={3000} />;
-  }
-
-  const screenProps = {
+  const screenProps = () => ({
     onNavigate: handleNavigate,
-    cols: cols - (showSidebar ? 20 : 0),
-    rows,
-  };
-
-  const renderScreen = () => {
-    switch (screen) {
-      case 'home': return <Home {...screenProps} />;
-      case 'browse': return <Browse {...screenProps} />;
-      case 'installed': return <Installed {...screenProps} />;
-      case 'marketplace': return <Marketplace {...screenProps} />;
-      case 'settings': return <Settings {...screenProps} />;
-      case 'recommend': return <Recommend {...screenProps} />;
-      case 'translate': return <Translate {...screenProps} />;
-      case 'context': return <Context {...screenProps} />;
-      case 'memory': return <Memory {...screenProps} />;
-      case 'team': return <Team {...screenProps} />;
-      case 'plugins': return <Plugins {...screenProps} />;
-      case 'methodology': return <Methodology {...screenProps} />;
-      case 'plan': return <Plan {...screenProps} />;
-      case 'workflow': return <Workflow {...screenProps} />;
-      case 'execute': return <Execute {...screenProps} />;
-      case 'history': return <History {...screenProps} />;
-      case 'sync': return <Sync {...screenProps} />;
-      case 'help': return <Help {...screenProps} />;
-      case 'mesh': return <Mesh {...screenProps} />;
-      case 'message': return <Message {...screenProps} />;
-      default: return <Home {...screenProps} />;
-    }
-  };
+    cols: Math.max(1, cols() - sidebarWidth() - 2),
+    rows: Math.max(1, contentHeight() - 1),
+  });
 
   return (
-    <box flexDirection="row" height={rows}>
-      {showSidebar && <Sidebar screen={screen} onNavigate={handleNavigate} />}
-      <box flexDirection="column" flexGrow={1} marginLeft={showSidebar ? 1 : 0} paddingRight={1}>
-        {renderScreen()}
+    <Show when={!showSplash()} fallback={<Splash onComplete={handleSplashComplete} duration={3000} />}>
+      <box flexDirection="column" height={rows()}>
+        <box flexDirection="row" height={contentHeight()}>
+          <Show when={sidebarVisible()}>
+            <Sidebar
+              screen={currentScreen()}
+              onNavigate={handleNavigate}
+            />
+          </Show>
+
+          <box flexDirection="column" flexGrow={1} paddingX={1}>
+            <Switch fallback={<Home {...screenProps()} />}>
+              <Match when={currentScreen() === 'home'}><Home {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'browse'}><Browse {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'installed'}><Installed {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'marketplace'}><Marketplace {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'settings'}><Settings {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'recommend'}><Recommend {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'translate'}><Translate {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'context'}><Context {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'memory'}><Memory {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'team'}><Team {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'plugins'}><Plugins {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'methodology'}><Methodology {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'plan'}><Plan {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'workflow'}><Workflow {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'execute'}><Execute {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'history'}><History {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'sync'}><Sync {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'help'}><Help {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'mesh'}><Mesh {...screenProps()} /></Match>
+              <Match when={currentScreen() === 'message'}><Message {...screenProps()} /></Match>
+            </Switch>
+          </box>
+        </box>
+
+        <StatusBar />
       </box>
-    </box>
+    </Show>
   );
 }
 

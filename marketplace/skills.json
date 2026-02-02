@@ -1,8 +1,8 @@
 {
   "$schema": "./schema.json",
   "version": 1,
-  "updatedAt": "2026-01-26",
-  "totalSkills": 15064,
+  "updatedAt": "2026-02-02",
+  "totalSkills": 15065,
   "curatedCollections": 31,
   "skills": [
     {
@@ -33110,6 +33110,23 @@
         "devops",
         "kubectl",
         "k8s"
+      ]
+    },
+    {
+      "id": "rohitg00/beautiful-mermaid/beautiful-mermaid",
+      "name": "Beautiful Mermaid",
+      "description": "Render Mermaid diagrams as beautiful SVGs or ASCII art. 5 diagram types, 15 themes, Shiki integration, zero DOM dependencies.",
+      "source": "rohitg00/beautiful-mermaid",
+      "tags": [
+        "mermaid",
+        "diagrams",
+        "visualization",
+        "flowchart",
+        "sequence",
+        "uml",
+        "ascii",
+        "svg",
+        "themes"
       ]
     },
     {

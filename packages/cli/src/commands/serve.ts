@@ -78,6 +78,8 @@ export class ServeCommand extends Command {
       console.log(colors.muted(`  GET  /trending        - Top skills`));
       console.log(colors.muted(`  GET  /categories      - Skill categories`));
       console.log(colors.muted(`  GET  /cache/stats     - Cache statistics`));
+      console.log(colors.muted(`  GET  /docs            - Interactive API docs`));
+      console.log(colors.muted(`  GET  /openapi.json    - OpenAPI specification`));
       console.log('');
       console.log(colors.muted('Press Ctrl+C to stop'));
 

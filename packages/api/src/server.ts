@@ -7,6 +7,7 @@ import { searchRoutes } from './routes/search.js';
 import { skillRoutes } from './routes/skills.js';
 import { trendingRoutes } from './routes/trending.js';
 import { categoryRoutes } from './routes/categories.js';
+import { docsRoutes } from './routes/docs.js';
 import type { ApiSkill, SearchResponse } from './types.js';
 
 export interface ServerOptions {
@@ -35,6 +36,7 @@ export function createApp(options: ServerOptions = {}) {
   app.route('/', skillRoutes(skills));
   app.route('/', trendingRoutes(skills));
   app.route('/', categoryRoutes(skills));
+  app.route('/', docsRoutes());
 
   return { app, cache };
 }

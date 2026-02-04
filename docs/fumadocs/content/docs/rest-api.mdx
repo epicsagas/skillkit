@@ -176,6 +176,16 @@ Search results are ranked using a multi-signal scoring system (0-100):
 | Popularity | 15 | Log-scaled stars + installs |
 | References | 15 | Has example files or docs |
 
+## Interactive API Documentation
+
+The server includes built-in interactive API docs powered by Swagger UI:
+
+- **`GET /docs`** — Interactive Swagger UI with try-it-out support
+- **`GET /openapi.json`** — OpenAPI 3.1 specification
+- **`GET /`** — API info with endpoint listing
+
+Open `http://localhost:3737/docs` in your browser after starting the server.
+
 ## Caching
 
 The server uses an in-memory LRU cache with configurable TTL. Search results are cached by query parameters to avoid redundant ranking computations.

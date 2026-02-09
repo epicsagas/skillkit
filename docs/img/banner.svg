@@ -10,48 +10,49 @@
       <stop offset="50%" style="stop-color:#555"/>
       <stop offset="100%" style="stop-color:#333"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#666"/>
-      <stop offset="100%" style="stop-color:#999"/>
-    </linearGradient>
   </defs>
 
   <rect width="1200" height="400" fill="url(#bg)" rx="12"/>
   <rect x="1" y="1" width="1198" height="398" fill="none" stroke="url(#border)" stroke-width="1" rx="12"/>
 
-  <line x1="60" y1="340" x2="1140" y2="340" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="60" y1="330" x2="1140" y2="330" stroke="#1a1a1a" stroke-width="1"/>
 
-  <g transform="translate(60, 80)">
+  <g transform="translate(60, 72)">
     <rect width="16" height="16" fill="white" rx="2"/>
   </g>
 
-  <text x="90" y="94" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="20" font-weight="700" fill="white" letter-spacing="3">SKILLKIT</text>
+  <text x="90" y="86" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="20" font-weight="700" fill="white" letter-spacing="3">SKILLKIT</text>
 
-  <text x="600" y="200" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="62" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">One Skill. 32 Agents.</text>
+  <text x="600" y="190" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="62" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">One Skill. 44 Agents.</text>
 
-  <text x="600" y="248" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="20" fill="#888" text-anchor="middle" letter-spacing="0.5">The open source package manager for AI agent skills</text>
+  <text x="600" y="235" font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace" font-size="20" fill="#888" text-anchor="middle" letter-spacing="0.5">The open source package manager for AI agent skills</text>
 
-  <g transform="translate(280, 280)">
-    <rect width="280" height="40" fill="#1a1a1a" stroke="#333" stroke-width="1" rx="6"/>
-    <text x="16" y="26" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#666">$</text>
-    <text x="32" y="26" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#ccc">npx skillkit@latest</text>
+  <g transform="translate(240, 268)">
+    <rect width="260" height="38" fill="#1a1a1a" stroke="#333" stroke-width="1" rx="6"/>
+    <text x="16" y="25" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#666">$</text>
+    <text x="32" y="25" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#ccc">npx skillkit@latest</text>
   </g>
 
-  <g transform="translate(580, 280)">
-    <rect width="160" height="40" fill="transparent" stroke="#444" stroke-width="1" rx="6"/>
-    <text x="80" y="26" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#999" text-anchor="middle">15,000+ skills</text>
+  <g transform="translate(520, 268)">
+    <rect width="150" height="38" fill="transparent" stroke="#444" stroke-width="1" rx="6"/>
+    <text x="75" y="25" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#999" text-anchor="middle">15,000+ skills</text>
   </g>
 
-  <g transform="translate(760, 280)">
-    <rect width="160" height="40" fill="transparent" stroke="#444" stroke-width="1" rx="6"/>
-    <text x="80" y="26" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#999" text-anchor="middle">Zero rewrites</text>
+  <g transform="translate(690, 268)">
+    <rect width="140" height="38" fill="transparent" stroke="#444" stroke-width="1" rx="6"/>
+    <text x="70" y="25" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#999" text-anchor="middle">Zero rewrites</text>
   </g>
 
-  <g transform="translate(60, 355)">
+  <g transform="translate(850, 268)">
+    <rect width="120" height="38" fill="transparent" stroke="#444" stroke-width="1" rx="6"/>
+    <text x="60" y="25" font-family="'SF Mono', 'Fira Code', monospace" font-size="14" fill="#999" text-anchor="middle">Apache-2.0</text>
+  </g>
+
+  <g transform="translate(60, 350)">
     <circle cx="5" cy="5" r="3" fill="#666"/>
     <circle cx="15" cy="5" r="3" fill="#555"/>
     <circle cx="25" cy="5" r="3" fill="#444"/>
     <circle cx="35" cy="5" r="3" fill="#333"/>
-    <text x="50" y="9" font-family="'SF Mono', monospace" font-size="11" fill="#444">Claude  Cursor  Codex  Gemini  Copilot  Windsurf  OpenCode  +25 more</text>
+    <text x="50" y="9" font-family="'SF Mono', monospace" font-size="11" fill="#444">Claude  Cursor  Codex  Gemini  Copilot  Windsurf  Devin  Aider  Cody  +35 more</text>
   </g>
 </svg>

@@ -119,10 +119,22 @@ export function Hero({ version, stars }: HeroProps): React.ReactElement {
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-transparent pointer-events-none"></div>
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-8 pb-10 relative">
-        <div className="hidden lg:block mb-6 overflow-hidden">
+        <div className="hidden lg:flex items-center justify-between mb-6 overflow-hidden">
           <pre className="text-zinc-600 text-[10px] leading-none font-mono select-none whitespace-pre" style={{ fontFamily: 'JetBrains Mono, Consolas, monospace' }}>
             {ASCII_LOGO}
           </pre>
+          <a
+            href="https://www.producthunt.com/products/skillkit-2?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_campaign=badge-skillkit-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-zinc-900/80 border border-zinc-800 hover:border-zinc-600 transition-colors rounded-full px-4 py-2 group shrink-0"
+          >
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#da552f] text-white font-bold text-sm">P</span>
+            <span className="flex flex-col">
+              <span className="text-[10px] font-semibold text-zinc-500 tracking-wider uppercase">Product Hunt</span>
+              <span className="text-sm font-bold text-white group-hover:text-zinc-200 transition-colors">#3 Product of the Day</span>
+            </span>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">

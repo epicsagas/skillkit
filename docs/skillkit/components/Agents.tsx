@@ -312,7 +312,7 @@ export function Agents(): React.ReactElement {
     <section className="py-6 border-b border-zinc-800 overflow-hidden">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <p className="text-zinc-500 font-mono text-[11px] uppercase tracking-widest mb-6 text-center">
-          Works with 32 AI Agents
+          Works with 44 AI Agents
         </p>
       </div>
 

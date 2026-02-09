@@ -18,7 +18,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: 'Auto Translation',
-    description: 'The npm for agent skills. Write once, auto-translate to 32 formats.',
+    description: 'The npm for agent skills. Write once, auto-translate to 44 formats.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
@@ -36,7 +36,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: 'Primer',
-    description: 'Auto-generate agent instructions for all 32 agents from your codebase.',
+    description: 'Auto-generate agent instructions for all 44 agents from your codebase.',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -109,7 +109,7 @@ const FEATURES: Feature[] = [
 ];
 
 const COMPARISONS = [
-  ['Agent Support', '1 agent', '32 agents'],
+  ['Agent Support', '1 agent', '44 agents'],
   ['Setup', 'Write rules manually', 'Auto-generate (Primer)'],
   ['Learning', 'Lost each session', 'Persistent memory'],
   ['Translation', 'Rewrite for each', 'One-click conversion'],

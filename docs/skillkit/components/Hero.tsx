@@ -119,15 +119,15 @@ export function Hero({ version, stars }: HeroProps): React.ReactElement {
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-transparent pointer-events-none"></div>
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-8 pb-10 relative">
-        <div className="flex items-center justify-between mb-4 lg:mb-6">
-          <pre className="text-zinc-600 text-[6px] sm:text-[8px] lg:text-[10px] leading-none font-mono select-none whitespace-pre" style={{ fontFamily: 'JetBrains Mono, Consolas, monospace' }}>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 lg:mb-6">
+          <pre className="hidden sm:block text-zinc-600 text-[6px] sm:text-[8px] lg:text-[10px] leading-none font-mono select-none whitespace-pre overflow-x-auto" style={{ fontFamily: 'JetBrains Mono, Consolas, monospace' }}>
             {ASCII_LOGO}
           </pre>
           <a
             href="https://www.producthunt.com/products/skillkit-2?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_campaign=badge-skillkit-2"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 sm:gap-3 bg-zinc-900/80 border border-zinc-800 hover:border-zinc-600 transition-colors rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 group shrink-0"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-900/80 border border-zinc-800 hover:border-zinc-600 transition-colors rounded-full px-3 sm:px-4 py-1.5 sm:py-2 group shrink-0 self-start"
           >
             <span className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-zinc-600 bg-transparent text-white font-bold text-xs sm:text-sm">P</span>
             <span className="flex flex-col">

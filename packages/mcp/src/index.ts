@@ -55,7 +55,7 @@ async function loadSkills(): Promise<SkillEntry[]> {
 const server = new Server(
   {
     name: 'skillkit-discovery',
-    version: '1.16.0',
+    version: '1.17.0',
   },
   {
     capabilities: {

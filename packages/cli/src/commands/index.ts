@@ -90,7 +90,13 @@ export {
   SessionNoteCommand,
   SessionCompleteCommand,
   SessionInProgressCommand,
+  SessionSnapshotSaveCommand,
+  SessionSnapshotRestoreCommand,
+  SessionSnapshotListCommand,
+  SessionSnapshotDeleteCommand,
+  SessionExplainCommand,
 } from './session.js';
+export { ActivityCommand } from './activity.js';
 export {
   ProfileCommand,
   ProfileListCommand,
@@ -119,6 +125,8 @@ export { SkillMdValidateCommand, SkillMdInitCommand, SkillMdCheckCommand } from 
 // API server
 export { ServeCommand } from './serve.js';
 export { ScanCommand } from './scan.js';
+export { IssuePlanCommand, IssueListCommand } from './issue.js';
+export { DoctorCommand } from './doctor.js';
 export { SaveCommand } from './save.js';
 export {
   AgentsMdCommand,

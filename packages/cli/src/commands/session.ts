@@ -7,7 +7,12 @@ import {
   updateSessionFile,
   listSessions,
   getMostRecentSession,
+  SnapshotManager,
+  SessionManager,
+  SessionExplainer,
+  ObservationStore,
   type SessionFile,
+  type SessionSnapshot,
 } from '@skillkit/core';
 
 export class SessionCommand extends Command {
@@ -28,12 +33,17 @@ export class SessionCommand extends Command {
 
   async execute(): Promise<number> {
     console.log(chalk.cyan('Session commands:\n'));
-    console.log('  session status    Show current session state');
-    console.log('  session start     Start a new session');
-    console.log('  session load      Load session from specific date');
-    console.log('  session list      List recent sessions');
-    console.log('  session note      Add note to current session');
-    console.log('  session complete  Mark task as completed');
+    console.log('  session status            Show current session state');
+    console.log('  session start             Start a new session');
+    console.log('  session load              Load session from specific date');
+    console.log('  session list              List recent sessions');
+    console.log('  session note              Add note to current session');
+    console.log('  session complete          Mark task as completed');
+    console.log('  session explain           Explain current session');
+    console.log('  session snapshot save     Save session snapshot');
+    console.log('  session snapshot restore  Restore session snapshot');
+    console.log('  session snapshot list     List snapshots');
+    console.log('  session snapshot delete   Delete snapshot');
     console.log();
     return 0;
   }
@@ -316,6 +326,213 @@ export class SessionInProgressCommand extends Command {
     saveSessionFile(updated);
 
     console.log(chalk.yellow(`○ In progress: ${this.task}`));
+    return 0;
+  }
+}
+
+export class SessionSnapshotSaveCommand extends Command {
+  static override paths = [['session', 'snapshot', 'save']];
+
+  static override usage = Command.Usage({
+    description: 'Save current session state as a named snapshot',
+    examples: [
+      ['Save snapshot', '$0 session snapshot save my-feature'],
+      ['With description', '$0 session snapshot save my-feature --desc "Before refactor"'],
+    ],
+  });
+
+  name = Option.String({ required: true });
+
+  desc = Option.String('--desc,-d', {
+    description: 'Snapshot description',
+  });
+
+  async execute(): Promise<number> {
+    const projectPath = process.cwd();
+    const manager = new SnapshotManager(projectPath);
+    const sessionMgr = new SessionManager(projectPath);
+
+    const state = sessionMgr.get();
+    if (!state) {
+      console.log(chalk.yellow('No active session to snapshot'));
+      return 1;
+    }
+
+    let observations: SessionSnapshot['observations'] = [];
+    try {
+      const raw = ObservationStore.readAll(projectPath);
+      observations = raw.map((o) => ({
+        id: o.id,
+        timestamp: o.timestamp,
+        sessionId: o.sessionId,
+        agent: o.agent as string,
+        type: o.type as string,
+        content: { ...o.content } as Record<string, unknown>,
+        relevance: o.relevance,
+      }));
+    } catch {
+      // No observations available
+    }
+
+    manager.save(this.name, state, observations, this.desc);
+    console.log(chalk.green(`\u2713 Snapshot saved: ${this.name}`));
+    if (this.desc) {
+      console.log(chalk.dim(`  ${this.desc}`));
+    }
+    return 0;
+  }
+}
+
+export class SessionSnapshotRestoreCommand extends Command {
+  static override paths = [['session', 'snapshot', 'restore']];
+
+  static override usage = Command.Usage({
+    description: 'Restore session state from a snapshot',
+    examples: [['Restore snapshot', '$0 session snapshot restore my-feature']],
+  });
+
+  name = Option.String({ required: true });
+
+  async execute(): Promise<number> {
+    const projectPath = process.cwd();
+    const manager = new SnapshotManager(projectPath);
+
+    if (!manager.exists(this.name)) {
+      console.log(chalk.red(`Snapshot "${this.name}" not found`));
+      return 1;
+    }
+
+    const { sessionState, observations } = manager.restore(this.name);
+
+    const sessionMgr = new SessionManager(projectPath);
+    const currentState = sessionMgr.getOrCreate();
+    Object.assign(currentState, {
+      currentExecution: sessionState.currentExecution,
+      history: sessionState.history,
+      decisions: sessionState.decisions,
+    });
+    sessionMgr.save();
+
+    try {
+      if (observations && observations.length > 0) {
+        const store = new ObservationStore(projectPath);
+        for (const obs of observations) {
+          store.add(
+            obs.type as Parameters<ObservationStore['add']>[0],
+            obs.content as unknown as Parameters<ObservationStore['add']>[1],
+            obs.agent as Parameters<ObservationStore['add']>[2],
+            obs.relevance,
+          );
+        }
+      }
+    } catch {
+      // Non-critical: session state restored even if observations fail
+    }
+
+    console.log(chalk.green(`\u2713 Snapshot restored: ${this.name}`));
+    return 0;
+  }
+}
+
+export class SessionSnapshotListCommand extends Command {
+  static override paths = [['session', 'snapshot', 'list'], ['session', 'snapshot', 'ls']];
+
+  static override usage = Command.Usage({
+    description: 'List all session snapshots',
+    examples: [['List snapshots', '$0 session snapshot list']],
+  });
+
+  json = Option.Boolean('--json,-j', false, {
+    description: 'Output as JSON',
+  });
+
+  async execute(): Promise<number> {
+    const projectPath = process.cwd();
+    const manager = new SnapshotManager(projectPath);
+    const snapshots = manager.list();
+
+    if (this.json) {
+      console.log(JSON.stringify(snapshots, null, 2));
+      return 0;
+    }
+
+    if (snapshots.length === 0) {
+      console.log(chalk.yellow('No snapshots found'));
+      console.log(chalk.dim('Save one with: skillkit session snapshot save <name>'));
+      return 0;
+    }
+
+    console.log(chalk.cyan(`Snapshots (${snapshots.length}):\n`));
+
+    for (const snap of snapshots) {
+      console.log(`  ${chalk.bold(snap.name)}`);
+      console.log(`    Created: ${snap.createdAt}`);
+      if (snap.description) {
+        console.log(`    ${chalk.dim(snap.description)}`);
+      }
+      console.log(`    Skills in history: ${snap.skillCount}`);
+      console.log();
+    }
+
+    return 0;
+  }
+}
+
+export class SessionSnapshotDeleteCommand extends Command {
+  static override paths = [['session', 'snapshot', 'delete']];
+
+  static override usage = Command.Usage({
+    description: 'Delete a session snapshot',
+    examples: [['Delete snapshot', '$0 session snapshot delete my-feature']],
+  });
+
+  name = Option.String({ required: true });
+
+  async execute(): Promise<number> {
+    const projectPath = process.cwd();
+    const manager = new SnapshotManager(projectPath);
+
+    if (!manager.delete(this.name)) {
+      console.log(chalk.red(`Snapshot "${this.name}" not found`));
+      return 1;
+    }
+
+    console.log(chalk.green(`\u2713 Snapshot deleted: ${this.name}`));
+    return 0;
+  }
+}
+
+export class SessionExplainCommand extends Command {
+  static override paths = [['session', 'explain']];
+
+  static override usage = Command.Usage({
+    description: 'Explain what happened in the current session',
+    examples: [
+      ['Explain session', '$0 session explain'],
+      ['JSON output', '$0 session explain --json'],
+      ['Skip git', '$0 session explain --no-git'],
+    ],
+  });
+
+  json = Option.Boolean('--json,-j', false, {
+    description: 'Output as JSON',
+  });
+
+  noGit = Option.Boolean('--no-git', false, {
+    description: 'Skip git analysis',
+  });
+
+  async execute(): Promise<number> {
+    const projectPath = process.cwd();
+    const explainer = new SessionExplainer(projectPath);
+    const explanation = explainer.explain({ includeGit: !this.noGit });
+
+    if (this.json) {
+      console.log(explainer.formatJson(explanation));
+      return 0;
+    }
+
+    console.log(explainer.formatText(explanation));
     return 0;
   }
 }

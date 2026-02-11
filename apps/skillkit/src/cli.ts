@@ -86,6 +86,12 @@ import {
   SessionNoteCommand,
   SessionCompleteCommand,
   SessionInProgressCommand,
+  SessionSnapshotSaveCommand,
+  SessionSnapshotRestoreCommand,
+  SessionSnapshotListCommand,
+  SessionSnapshotDeleteCommand,
+  SessionExplainCommand,
+  ActivityCommand,
   ProfileCommand,
   ProfileListCommand,
   ProfileCreateCommand,
@@ -104,11 +110,14 @@ import {
   SkillMdCheckCommand,
   ServeCommand,
   ScanCommand,
+  DoctorCommand,
   SaveCommand,
   AgentsMdCommand,
   AgentsMdInitCommand,
   AgentsMdSyncCommand,
   AgentsMdShowCommand,
+  IssuePlanCommand,
+  IssueListCommand,
 } from '@skillkit/cli';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -215,6 +224,12 @@ cli.register(SessionListCommand);
 cli.register(SessionNoteCommand);
 cli.register(SessionCompleteCommand);
 cli.register(SessionInProgressCommand);
+cli.register(SessionSnapshotSaveCommand);
+cli.register(SessionSnapshotRestoreCommand);
+cli.register(SessionSnapshotListCommand);
+cli.register(SessionSnapshotDeleteCommand);
+cli.register(SessionExplainCommand);
+cli.register(ActivityCommand);
 
 cli.register(ProfileCommand);
 cli.register(ProfileListCommand);
@@ -238,10 +253,14 @@ cli.register(SkillMdCheckCommand);
 
 cli.register(ServeCommand);
 cli.register(ScanCommand);
+cli.register(DoctorCommand);
 cli.register(SaveCommand);
 cli.register(AgentsMdCommand);
 cli.register(AgentsMdInitCommand);
 cli.register(AgentsMdSyncCommand);
 cli.register(AgentsMdShowCommand);
+
+cli.register(IssuePlanCommand);
+cli.register(IssueListCommand);
 
 cli.runExit(process.argv.slice(2));

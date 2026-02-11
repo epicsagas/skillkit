@@ -20,6 +20,16 @@ describe('CLI Commands', () => {
       expect(commands.TranslateCommand).toBeDefined();
       expect(commands.ContextCommand).toBeDefined();
       expect(commands.RecommendCommand).toBeDefined();
+
+      expect(commands.ActivityCommand).toBeDefined();
+      expect(commands.DoctorCommand).toBeDefined();
+      expect(commands.IssuePlanCommand).toBeDefined();
+      expect(commands.IssueListCommand).toBeDefined();
+      expect(commands.SessionSnapshotSaveCommand).toBeDefined();
+      expect(commands.SessionSnapshotRestoreCommand).toBeDefined();
+      expect(commands.SessionSnapshotListCommand).toBeDefined();
+      expect(commands.SessionSnapshotDeleteCommand).toBeDefined();
+      expect(commands.SessionExplainCommand).toBeDefined();
     });
   });
 });

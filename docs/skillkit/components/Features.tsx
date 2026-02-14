@@ -121,9 +121,9 @@ const COMPARISONS = [
 
 export function Features(): React.ReactElement {
   return (
-    <section id="features" className="py-12 border-b border-zinc-800 bg-surface">
+    <section id="features" className="py-8 border-b border-zinc-800 bg-surface">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 mb-6">
           <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-white mb-2 font-mono">At a Glance</h2>
             <p className="text-zinc-500 font-mono text-sm mb-6">
@@ -167,20 +167,20 @@ export function Features(): React.ReactElement {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
           {FEATURES.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative p-4 border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300 cursor-default"
+              className="group relative p-2.5 border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300 cursor-default"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-zinc-800/0 to-zinc-800/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="text-zinc-500 group-hover:text-white transition-colors mb-2">
+                <div className="text-zinc-500 group-hover:text-white transition-colors mb-1">
                   {feature.icon}
                 </div>
-                <h4 className="text-xs font-bold text-white mb-1 font-mono">{feature.title}</h4>
-                <p className="text-zinc-600 text-[10px] leading-relaxed font-mono group-hover:text-zinc-400 transition-colors">
+                <h4 className="text-[11px] font-bold text-white mb-0.5 font-mono">{feature.title}</h4>
+                <p className="text-zinc-600 text-[10px] leading-snug font-mono group-hover:text-zinc-400 transition-colors">
                   {feature.description}
                 </p>
               </div>
